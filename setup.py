@@ -3,7 +3,7 @@ import setuptools
 with open("README.md", "r") as readme:
     long_description = readme.read()
 
-with open("requirements.txt") as requirements_file:
+with open("requirements.txt", "r") as requirements_file:
     requirements = requirements_file.read()
 
 setuptools.setup(
@@ -13,6 +13,7 @@ setuptools.setup(
     author_email="diadochokinetic@gmail.com",
     description="A little GUI to start and stop my Virtual Machines with macro keys",
     long_description=long_description,
-    install_requirements=requirements,
+    python_requires='>3.6',
+    install_requires=requirements,
     packages=['vmcontrol', 'vmcontrol.*']
 )
