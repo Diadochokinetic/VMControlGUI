@@ -1,3 +1,6 @@
 #!./pyenv/bin/python3
 
-print("Hello World!")
+from vmcontrol.vmcontrol import main
+
+if __name__ == "__main__":
+    main()
