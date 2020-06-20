@@ -4,10 +4,28 @@ from functools import partial
 from vmcontrol import vboxmanage
 
 
-def close_window(app, variable):
+def close_window(app, variable, event=None):
     global VM
     VM = variable.get()
     app.destroy()
+
+
+def move_down(variable, allVMs, event=None):
+    index = allVMs.index(variable.get())
+    if index - 1 < 0:
+        index = len(allVMs) - 1
+    else:
+        index = index - 1
+    variable.set(allVMs[index])
+
+
+def move_up(variable, allVMs, event):
+    index = allVMs.index(variable.get())
+    if index + 1 > len(allVMs) - 1:
+        index = 0
+    else:
+        index = index + 1
+    variable.set(allVMs[index])
 
 
 def prompt_user(allVMs=[], prompt_text='Please choose a VM to run:'):
@@ -34,6 +52,11 @@ def prompt_user(allVMs=[], prompt_text='Please choose a VM to run:'):
     #Button
     button = tk.Button(text='OK', command=partial(close_window, app, variable))
     button.place(relx=0.5, rely=0.8, anchor='center')
+
+    #key bindings
+    app.bind('<Down>', partial(move_down, variable, allVMs))
+    app.bind('<Up>', partial(move_up, variable, allVMs))
+    app.bind('<Return>', partial(close_window, app, variable))
 
     app.mainloop()
 
