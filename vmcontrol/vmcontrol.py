@@ -23,3 +23,7 @@ def main():
         if tk.messagebox.askyesno('VM-Control', f'Start {VM}?'):
             print(f'{VM} will be started.')
             vboxmanage.start_vm(VM)
+
+
+if __name__ == '__main__':
+    main()
