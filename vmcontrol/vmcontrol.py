@@ -16,11 +16,11 @@ def main():
     messageapp.withdraw()
 
     if VM in vboxmanage.list_runningvms():
-        if tk.messagebox.askyesno('VM-Control', f'Shutdown {VM}?'):
+        if tk.messagebox.askyesno('VMControlGUI', f'Shutdown {VM}?'):
             print(f'{VM} will be shutdown')
             vboxmanage.stop_vm(VM)
     else:
-        if tk.messagebox.askyesno('VM-Control', f'Start {VM}?'):
+        if tk.messagebox.askyesno('VMControlGUI', f'Start {VM}?'):
             print(f'{VM} will be started.')
             vboxmanage.start_vm(VM)
 

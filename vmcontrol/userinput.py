@@ -32,6 +32,7 @@ def prompt_user(allVMs=[], prompt_text='Please choose a VM to run:'):
 
     #Init application window
     app = tk.Tk()
+    app.title('VMControlGUI')
 
     #Font and orientation setup
     app.geometry('300x150')
