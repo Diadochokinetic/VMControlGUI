@@ -1,5 +1,6 @@
 import tkinter as tk
 import sys
+import argparse
 from functools import partial
 from vmcontrol import vboxmanage
 
@@ -69,9 +70,13 @@ def vm_to_control():
     allVMs = vboxmanage.list_all_vms()
 
     #Name of VM to controll is passed as argument to the script
-    try:
-        VM = sys.argv[1]
-    except:
+    parser = argparse.ArgumentParser()
+    parser.add_argument('VirtualMachine', nargs='?', const=None, type=str)
+    args = parser.parse_args()
+
+    VM = args.VirtualMachine    
+
+    if VM == None:
         VM = prompt_user(allVMs)
 
     if VM not in allVMs:
